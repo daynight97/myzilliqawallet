@@ -6,4 +6,4 @@ This is a wallet for Zilliqa which can completely run on your own computer/PC wi
 The wallet wallet can run entirely client side. When you want to unlock your wallet, make sure you turn off your internet (airplane mode) so that any trojan/virus won't be able to send out any info via internet. Only after the wallet is unlocked, then reconnect your internet (toggle airplane mode), and send your token as desired. 
 
 DISCLAIMER
-This software is still under testing, use it at your own risk. Any feedback/bug is welcome.
+This software is still under testing, use it at your own risk. Any feedback/bug report is welcome.
