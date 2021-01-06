@@ -43,8 +43,8 @@
             </div> 
         </div>
 		<div class="navbar navbar-nav navbar-right">
-					<a href="sendtokenc.html" class="nav-item nav-link">中文</a>
-					<a href="sendtoken.html" class="nav-item nav-link   active">English</a>
+					<a href="sendtokenc.html" class="nav-item nav-link  active">中文</a>
+					<a href="sendtoken.html" class="nav-item nav-link  ">English</a>
 		</div>			
 		
 		
@@ -66,30 +66,30 @@
  <div class="container-fluid full-width ">
  <br>
  <br>
- <h5> ZILLIQA (ZIL) Client Side Wallet v0.9.9.1b </h5>  
- This is a true 100% open-source client side Zilliqa wallet. The wallet is still under testing, use it at your own risk. Download the <a href="https://github.com/daynight97/myzilliqawallet/releases/">source</a> and run from your computer for maximum security.<b>
-<p id="instruction">Please disconnect the internet now! And unlock your wallet using method 1,2 or 3, then press Unlock button.</p></b>
+ <h5> ZILLIQA (ZIL) 客户端钱包 v0.9.9.1b </h5>  
+ 这是真正100％的开放源代码客户端Zilliqa钱包。钱包仍在测试中，风险自负。 下载 <a href="https://github.com/daynight97/myzilliqawallet/releases/">源代码</a> 并从您的电脑上运行会更安全。<b>
+<p id="instruction">请与互联网断接！然后使用方法1,2或3解锁您的钱包，然后按解锁钮。</p></b>
  <hr>
    
  <div class="row">
 		  <div class="col-4">
-		  <h5>Your Wallet Information</h5>
+		  <h5>您的钱包信息</h5>
 		  <br>
 		  <h5>
-		  Bech32 Address
+		  Bech32 地址
 		  </h5>
 		  <h6>
 		  <p id="walletaddressbech32"> <p>
 		  </h6>
 		   
 		  <h5>
-		  ERC Address
+		  ERC 地址
 		  </h5>
 		  <h6>		  
 		  <p id="walletaddresserc20"> <p> 
 		   	
 		  <h5>		  		  
-		  Balance
+		  账户余额
 		  </h5>
 		  <h6>			  
 		   <p id="walletzilbalance"> <p>  
@@ -100,14 +100,14 @@
 		  
 		  <hr>
 		   
-		  <h5>Node</h5>
+		  <h5>节点</h5>
 		  <h6>
 		  <!-- For mainnet, the node is api.zilliqa.com, for testnet it is dev-api.zilliqa.com, and the chainid=1 for mainnet, 333 for testnet -->
            <!--	<input type="text"  class="form-control" id="walletnode" value="https://dev-api.zilliqa.com">  -->
 		   <input type="text"  class="form-control" id="walletnode" value="https://api.zilliqa.com/"> 
 				 
 		  <br>
-		  <h5>Chain ID</h5>  <small>mainnet=1, testnet=333</small>
+		  <h5>链ID</h5>  <small>主网=1, 测试网=333</small>
 		  <h6>
           <!--		<input type="text"  class="form-control" id="walletchainid" value="333">			 -->
 		  <input type="text"   class="form-control" id="walletchainid" value="1">		  
@@ -137,28 +137,28 @@
   
   
 		  <div class="col-6"> 
-		            <h4>Unlock Your Wallet</h4>
+		            <h4>解锁钱包</h4>
 					<br>
-					<h5>Method 1: Private Key</h5>
-					<label >Private Key</label>			 
+					<h5>方法1：私钥</h5>
+					<label >输入私钥</label>			 
 					<input type="text"  class="form-control" id="privatekey" value="">
 			        <br>
 
-					<h5>Method 2: Mnemonic</h5>
-					<label   >Enter Mnemonic</label>			 
+					<h5>方法2：助记符</h5>
+					<label   >输入助记符</label>			 
 					<input type="text"   class="form-control" id="mnemonic" value="">
 			        <br>	
 					
-					<h5>Method 3: Keystore</h5>
+					<h5>方法3：密钥库</h5>
 					 	 
 					<input type="file" name="file" class="form-control" id="file-input" value="">
-					<label   >Enter Passphrase</label>			 
+					<label   >输入密码</label>			 
 					<input type="text"   class="form-control" id="passphrase" value="">			        
 					
 					
 					
 					<br>
-					<button type="button" class="btn btn-primary btn-sm  btn-block" onclick="unlockwallet()">UNLOCK</button> 
+					<button type="button" class="btn btn-primary btn-sm  btn-block" onclick="unlockwallet()">解锁</button> 
 					<p id="msg4"></p>
 
 					<hr>
@@ -167,33 +167,33 @@
 					
 					
 					
-					<button type="button" class="btn btn-primary btn-sm  btn-block" id="refreshbutton" onclick="refreshinternet()" disabled>REFRESH</button> 
+					<button type="button" class="btn btn-primary btn-sm  btn-block" id="refreshbutton" onclick="refreshinternet()" disabled>刷新</button> 
 					<hr>					
 					
 					
 					<br> 					
-					<h5>Send Tokens</h5>					
+					<h5>发送代币</h5>					
 
 					
-					<label   >Destination ZIL Address</label>			 
+					<label   >发送地址</label>			 
 					<input type="text"   class="form-control" id="destziladdress" value=""   disabled>	
 					<br>
 					
 					<div class="row">
 						<div  class="col-8">
-									<label   >Amount In ZIL</label>			 
+									<label   >数量 (ZIL)</label>			 
 									<input type="text"   class="form-control" id="amount" value=""   disabled>	
 									<br>
  
 						</div>
 						<div  class="col-4">
-									<label   >Gas In ZIL</label>			 
+									<label   >交易手续费(ZIL)</label>			 
 									<input type="text"   class="form-control" id="gas" value="0.002"   disabled>	
 									<br>
 							  
 						</div>						
 					</div>
-					 <button type="button" class="btn btn-primary btn-sm  btn-block" id="sendbutton" onclick="sendtxnow()"   disabled>SEND</button> 
+					 <button type="button" class="btn btn-primary btn-sm  btn-block" id="sendbutton" onclick="sendtxnow()"   disabled>发送</button> 
 						
 		  
 		  </div>
@@ -241,7 +241,7 @@
  
 
 <noscript>
-  You need to enable JavaScript to run this app.
+  您需要启用JavaScript才能运行此应用。
 </noscript>
 
   
@@ -307,7 +307,7 @@ If you would like to reuse this code, please quote the source, thank you.
 
 Programmed by : Clement T
 Date: 4th Jan 2021
-Contact/support: clement@myzilliqawallet.com
+email: clement@myzilliqawallet.com
 
 v0.9.9.0b
 bug fixed:- No need to turn on internet when launch the sendtoken.html
@@ -342,7 +342,7 @@ async function initzilliqa()
 		try {
 			zilliqa = new Zilliqa.Zilliqa(node);
 		} catch(e) {
-			errmsg="Error connecting to node! Please connect to internet and refresh again!";
+			errmsg="节点连接出错！ 请连接互联网，然后重新刷新！";
 			alert(errmsg);	   
 			return 0;			   
 		}  
@@ -362,7 +362,7 @@ async function initzilliqa()
 		try {
 			VERSION = Zilliqa.bytes.pack(chainid, msgVersion);	
 		} catch(e) {
-			errmsg="Error connecting to node! Please connect to internet and refresh again!";
+			errmsg="节点连接出错！ 请连接互联网，然后重新刷新！";
 			alert(errmsg);	   
 			return 0;			   
 		}  	
@@ -397,7 +397,7 @@ async function unlockwallet()
    
 	privateKey= document.getElementById('privatekey').value;
 	mnemonic= document.getElementById('mnemonic').value;
-  	document.getElementById("instruction").innerHTML="Wallet Unlocked! Reconnect your internet and press Refresh button now. ";
+  	document.getElementById("instruction").innerHTML="钱包已解锁！ 重新连接互联网，然后按刷新钮。";
    //document.getElementById("message2").innerHTML=keystore;
    
 	   var passphrase=document.getElementById("passphrase").value;
@@ -417,7 +417,7 @@ async function unlockwallet()
 			if (!Zilliqa.validation.isPrivateKey(privateKey))
 			{
 				document.getElementById('privatekey').value="";
-				alert("Invalid Private Key1!");	
+				alert("私钥无效!");	
 				method=0;
 				return;
 			}
@@ -438,7 +438,7 @@ async function unlockwallet()
 					    method=0;
 						document.getElementById('privatekey').value="";
 						//errmsg=destaddressbech32+" is an invalid ZIL address!!";
-						alert("Invalid Private Key2!");	   
+						alert("私钥无效!!");	   
 						return;			   
 					} 			
 		
@@ -475,7 +475,7 @@ async function unlockwallet()
 			document.getElementById("refreshbutton").disabled = false;
 		
 		 
-			document.getElementById("msg4").innerHTML="Reconnect your internet, then press refresh";
+			document.getElementById("msg4").innerHTML="重新连接互联网，然后按刷新!";
 		}
 
   
@@ -509,7 +509,7 @@ async function refreshinternet()
 			    method=0;
 				document.getElementById('privatekey').value="";
 				//errmsg=destaddressbech32+" is an invalid ZIL address!!";
-				alert("Invalid Private Key!");	   
+				alert("私钥无效!");	   
 				return;			   
 			} 	
 		
@@ -527,7 +527,7 @@ async function refreshinternet()
 			    method=0;
 				//errmsg=destaddressbech32+" is an invalid ZIL address!!";
 				document.getElementById('mnemonic').value="";
-				alert("Invalid Mnemonic!!");	   
+				alert("助记符无效!!");	   
 				return;					   
 			} 		
 		
@@ -544,7 +544,7 @@ async function refreshinternet()
 			     document.getElementById("walletaddressbech32").innerHTML=Zilliqa.toBech32Address(address);				 
 			} catch(e) {
 				//errmsg=destaddressbech32+" is an invalid ZIL address!!";
-				 alert("Invalid Keystore/Passphrase");	   
+				 alert("密钥库/密码无效!");	   
 				 method=0;
 				 return;			   
 			}		
@@ -577,7 +577,7 @@ async function refreshinternet()
 			document.getElementById("gas").disabled = false; 
 			method=0;
 			initvar();	
-			document.getElementById("instruction").innerHTML="Remain connected to internet, now you can start to send your ZIL";			
+			document.getElementById("instruction").innerHTML="保持连接互联网，现在您可以开始发送ZIL";			
 		} catch(e) {
 
 			document.getElementById("walletzilbalance").innerHTML= '';
@@ -586,7 +586,7 @@ async function refreshinternet()
 		
 			if (e=="TypeError: Network request failed")
 			{
-				alert ("No internet error! Please connect to internet and refresh again!");
+				alert ("重新连接互联网，然后按刷新!");
 				return;	
 			
 			}
@@ -594,7 +594,7 @@ async function refreshinternet()
 			{
 			//errmsg="This wallet has no balance!";
 			//alert(errmsg);	
-				alert("This wallet has no balance!");
+				alert("这个钱包没有余额！");
 				return;	
 			
 			}
@@ -688,13 +688,13 @@ async function sendtx( destaddressbech32,   amountinzil ) {
   var gasinzil=document.getElementById("gas").value;
   if (gasinzil>10) // 10zil to be paid as zil? too highlight_file
   {
-	  alert("Gas too high! Higher than 10 zil!");
+	  alert("交易手续费太高!");
 	  return;	  
   }
   
   if (gasinzil<0.002) // 10zil to be paid as zil? too highlight_file
   {
-	  alert("Gas too low error!");
+	  alert("交易手续费太低!");
 	  return;	  
   }  
   
@@ -769,7 +769,7 @@ async function sendtxnow()
 	   // check address
 	   if (!Zilliqa.validation.isBech32(destaddressbech32))  // if this is not a valid bech32 address
 	   {
-			errmsg=destaddressbech32+" is an invalid ZIL address!";
+			errmsg=destaddressbech32+" 是无效的ZIL地址！";
 			alert(errmsg);	   
 			return;
 	   }
@@ -782,7 +782,7 @@ async function sendtxnow()
 		try {
 		    erc20address=await Zilliqa.fromBech32Address(destaddressbech32);
 		} catch(e) {
-			errmsg=destaddressbech32+" is an invalid ZIL address!!";
+			errmsg=destaddressbech32+" 是无效的ZIL地址！";
 			alert(errmsg);	   
 			return;	
 		   
@@ -796,14 +796,14 @@ async function sendtxnow()
    
 	   if (!Zilliqa.validation.isAddress(erc20address))
 	   {
-			errmsg=destaddressbech32+" is an invalid ZIL address3!";
+			errmsg=destaddressbech32+" 是无效的ZIL地址！";
 			alert(errmsg);	   
 			return;	   	   
 	   }
 	   
 	   if (parseInt(amounttosendinzil, 10)>parseInt(balanceinzil, 10)) // insufficient balance to send
 	   {
-		   errmsg="You balance ("+balanceinzil+" ZIL)"+" is less than "+amounttosendinzil+ " ZIL";
+		   errmsg="您的帐户余额 ("+balanceinzil+" ZIL)"+" 少于 "+amounttosendinzil+ " ZIL";
 			alert(errmsg);	   
 		   return;	   
 	   }
@@ -813,19 +813,19 @@ async function sendtxnow()
 	  var gasinzil=document.getElementById("gas").value;
 	  if (gasinzil>10) // 10zil to be paid as zil? too highlight_file
 	  {
-		  alert("Gas too high! Higher than 10 zil!");
+		  alert("交易手续费太高！");
 		  return;	  
 	  }
 	  
 	  if (gasinzil<0.002) // 10zil to be paid as zil? too highlight_file
 	  {
-		  alert("Gas too low error!");
+		  alert("交易手续费太低！");
 		  return;	  
 	  }    
    
   
 	  var txt;
-	  confirmmsg="Are you sure you want to send "+amounttosendinzil+ " ZIL to "+destaddressbech32+"?";
+	  confirmmsg="您确定要发送 "+amounttosendinzil+ " ZIL 至"+destaddressbech32+"?";
 	  
 	  
 	  if (confirm(confirmmsg)) {
