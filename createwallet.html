@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<!--https://htmlcompressor.com/compressor/-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" data-react-helmet="true" content="myZilliqa Wallet is a true open-source client side wallet. Run the wallet from your own computer!">
+<meta name="keywords" content="zilliqa, wallet, client side, staking, statistic, myzilliqawallet">
+ 
+<title>My Zilliqa Wallet</title>
+<link rel="icon" href="images/myzilliqawalletlogo.png">
+
+
+
+
+
+
+<script src="js/jspdf.min.js"></script>
+<script src="js/web3.min.js"></script> 
+<script src="js/jquery-3.3.1.min.js"></script>   
+<script src="js/bootstrap.min.js"></script> 
+<script src="js/zilliqa.min.js"></script>
+<script src="js/all.min.js"></script>
+ 
+
+<link href="css/bootstrap.min.css" rel="stylesheet" />
+
+
+
+
+<style type="text/css">
+
+html {
+  font-size: 16px;
+}
+
+
+
+
+
+	
+</style>
+ 
+</head>
+<body>
+<div class="bs-1">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a href="home.php" class="navbar-brand">
+            <img src="images/myzilliqawalletsmall.png" height="28" alt="myZilliqaWallet">
+        </a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav">
+                 
+ 			
+				
+				
+				<a href="home.html" class="nav-item nav-link">Home</a>
+				<a href="createwallet.html" class="nav-item nav-link   active">Create Wallet</a>
+				<a href="sendtoken.html" class="nav-item nav-link">Send Tokens</a>
+				<a href="zilstatistic.php" class="nav-item nav-link">Staking Statistic</a>
+				<a href="zrc2viewer.php" class="nav-item nav-link">ZRC2 Viewer</a>						
+				
+				
+				
+            </div>
+ 
+        </div>
+    </nav>
+</div>
+
+
+
+
+
+
+
+
+
+ <div class="container">
+ <h4>  .  </h4> <h5> Batch Zilliqa Paper Wallets</h5>
+ This software is still under testing, use it at your own risk. This page will generate single or multiple paper wallets as
+ a pdf file which you can save. Do not reveal your private keys to anyone.  <b>You may disconnect from internet now. </b> Make sure no computer virus or keyboard logger. 0.9.1 version. 
+
+ <hr>
+   
+  
+      
+	
+	
+	
+
+	<p>
+	
+       
+		
+		<label for="datePicker" >Amount of Wallets (1-1000)</label>
+		
+         
+				 
+				 
+				<input type="text" name="username" class="form-control" id="amountofwallets" value="10">
+ 
+		         
+ 	
+				<br>  
+				
+				<p id="description">
+				 Start moving your mouse below this line until the paper wallets is generated as pdf file.
+                 </p>
+				 <hr>
+				  
+
+		 
+  	  
+	
+	
+	
+	
+	
+	  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+
+
+
+<div class="container">
+
+  <div class="column">
+  
+    <div class="canvas">
+      <canvas    id="Canvas" onmousemove="canvasMove(event)"   onmousedown="mouseDown(event)"></canvas>
+    </div>
+     	
+	
+	  
+  </div>
+  
+  
+  
+</div>
+
+
+
+ 
+ 
+
+
+
+  
+</body>
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+<script>
+
+ 
+
+ 
+var canvas;
+var context;
+var image;
+ 
+var image2;
+var imageDataOriginal;
+var imageDataRawOriginalUnchanged;
+
+
+var mouseholdingsomething=0; // 1 is holding a coin
+ 
+
+
+//////////////////animation ////
+
+
+
+
+
+var stop = false;
+var frameCount = 0;
+//var $results = $("#results");
+var fps, fpsInterval, startTime, now, then, elapsed;
+
+
+ 
+var currentdrawfunction=0;
+ 
+
+
+function loadweb3()
+{
+			if (typeof web3 !== 'undefined') {
+                console.log('Web3 Detected! ' + web3.currentProvider.constructor.name)
+                window.web3 = new Web3(web3.currentProvider);
+            } else {
+                console.log('No Web3 Detected... using HTTP Provider')
+              //  window.web3 = new Web3(new Web3.providers.HttpProvider("https://mainnet.infura.io/<APIKEY>"));
+				
+				window.web3 = new Web3(new Web3.providers.HttpProvider("https:abc"));
+            }
+}
+
+////////////////////////////////////
+
+function init() {
+   loadweb3();
+   image = document.getElementById('SourceImage');
+  canvas = document.getElementById('Canvas');
+  context = canvas.getContext('2d');
+  canvas.width = 1344;
+  canvas.height = 522;
+  
+  
+    
+  
+  
+  context.drawImage(image, 0, 0, canvas.width,canvas.height);
+   imageDataOriginal = context.getImageData(0, 0, image.width, image.height );
+   imageDataRawOriginalUnchanged= context.getImageData(0, 0, image.width, image.height );
+  
+  //drawImage(image);
+  // Or
+  // var image = new Image();
+  // image.onload = function () {
+  //    drawImage(image);
+  // }
+  // image.src = 'image.jpg';
+  initglobalvariable();
+}
+
+function drawImage(image) {
+  // Set the canvas the same width and height of the image
+  canvas.width = image.width;
+  canvas.height = image.height;
+
+  context.drawImage(image, 0, 0);
+}
+
+window.addEventListener('load', init);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+
+
+var numberofpoint=0;
+var entropyindex=0;
+var entropystring="";
+ 
+function random(seed) {
+    var x = Math.sin(seed++) * 10000;
+    return x - Math.floor(x);
+}
+
+// Returns a random float between min and max
+function getRandomArbitrary(seed, min, max) {
+	var tmp=random(seed);
+
+
+  return tmp * (max - min) + min;
+}
+
+
+function randomStr(len, arr) { 
+            var ans = ''; 
+            for (var i = len; i > 0; i--) { 
+                ans +=  
+                  arr[Math.floor(Math.random() * arr.length)]; 
+            } 
+            return ans; 
+        } 
+
+
+function printWallet() {
+
+    var totalwalletneeded=36;
+	 
+	totalwalletneeded= document.getElementById('amountofwallets').value; ;
+	// each page can generate 5 wallets only
+    var pdf = new jsPDF();
+    //var imglogo = new Image();
+	var coordy=25;
+	var fontheight=6;
+	//imglogo.src = 'images/myzilliqawalletsmall4.png';
+	
+	var requiredPages;
+	requiredPages=Math.ceil(totalwalletneeded/5.0);
+	var generatedwallet=1;
+	var cd = new Date();
+	var n = cd.toJSON();
+	for (num=1; num<=requiredPages; num++)
+	{
+		
+		
+			pdf.addFont('Helvetica', 'Helvetica', 'normal');
+			pdf.setFont('Helvetica'); 	
+		    coordy=25;
+			fontheight=6;
+			//pdf.addImage(imglogo, 'png', 20, 8, 160/4, 42/4);
+		  
+			pdf.setTextColor(150);
+			pdf.setFontSize(12);
+			pdf.text(20, coordy, 'https://myzilliqawallet.com');
+			coordy=coordy+fontheight;
+			pdf.text(20, coordy , 'This software is still under testing. Use at your own risk.');	
+			coordy=coordy+fontheight;	
+			pdf.text(20, coordy , 'Do not reveal your private key to anyone. ');	
+			
+			
+			pdf.text(100, coordy , n);
+			
+			
+			coordy=coordy+fontheight;	
+			pdf.setLineWidth(0.01);
+			pdf.setDrawColor(225, 225, 225);
+			pdf.line(20, coordy , 190,coordy);
+		  
+		  
+		  
+			coordy=coordy+10;
+			fontheight=9;  
+			pdf.setFontSize(16);
+			pdf.setDrawColor(185, 185, 185);
+			pdf.setTextColor(100);
+			pdf.text(20, coordy, 'Zilliqa Paper Wallets');
+			coordy=coordy+4;
+			pdf.line(20, coordy , 190,coordy);		
+			coordy=coordy+fontheight;	
+			
+			pdf.setFontSize(12);
+			pdf.setTextColor(50);
+			// generate public-private key pair
+
+			
+			pdf.setDrawColor(205, 205, 205);	
+			
+			
+			for (i=0; i<5; i++)
+			{
+				
+				if (generatedwallet<=totalwalletneeded)
+				{
+					rdnstr=randomStr(20, '1234567abcdefg');
+					newentropystring=entropystring+rdnstr;
+					
+					
+					 acct=web3.eth.accounts.create(newentropystring);	
+					 
+
+					pdf.addFont('ArialMS', 'Arial', 'normal');
+					pdf.setFont('Arial'); 	
+					pdf.text(20, coordy, "Public Key");   
+					
+					pdf.setFontSize(34);
+					pdf.text(150, coordy+10, generatedwallet.toString(10));
+					pdf.setFontSize(12);
+					
+					fontheight=7;  
+					coordy=coordy+fontheight;	
+					
+					pdf.addFont('Courier', 'Courier', 'normal');
+					pdf.setFont('Courier');
+					ziladdress=Zilliqa.getAddressFromPrivateKey(acct.privateKey)
+					pdf.text(20, coordy, Zilliqa.toBech32Address(ziladdress) 	);   
+					 
+					
+					coordy=coordy+fontheight;
+					coordy=coordy+fontheight;	
+					pdf.addFont('ArialMS', 'Arial', 'normal');
+					pdf.setFont('Arial'); 		
+					
+					pdf.text(20, coordy, "Private Key"); 	
+					coordy=coordy+fontheight;	
+					
+					pdf.addFont('Courier', 'Courier', 'normal');
+					pdf.setFont('Courier');	
+					 
+					pdf.text(20, coordy, acct.privateKey); 
+					coordy=coordy+fontheight;	
+					pdf.line(20, coordy , 190,coordy);		
+					generatedwallet=generatedwallet+1;
+					coordy=coordy+8;
+				}					
+
+			}
+			if (num!=requiredPages)
+				pdf.addPage();
+	
+	}
+	
+	var d=new Date();
+	//var fstr=d.getYear().toString()+d.getMonth().toString()+d.getDate().toString();
+	var yr=d.getFullYear();
+	var mth=d.getMonth()+1;
+	var dd=d.getDate();
+	
+	var mthstr;
+	var datestr;
+	var milisec;
+	
+	if (mth<10)
+	{
+		mthstr="0"+mth.toString();
+	}
+	else
+	{
+		mthstr=mth.toString();
+	}
+	
+	if (dd<10)
+	{
+		datestr="0"+dd.toString();
+	}
+	else
+	{
+		datestr=dd.toString();	
+	}
+	
+	var strmili=d.getMilliseconds();
+	var strsec=d.getSeconds();
+	 
+	
+	var fstr= yr.toString().concat(mthstr, datestr);
+	
+	fstr=fstr+"_"+strsec+strmili.toString();
+	
+	var fname="ZilliqaPapperWallet"+fstr+".pdf";
+	
+	pdf.save(fname);
+  
+  
+    document.getElementById('description').innerHTML= totalwalletneeded +" wallets generated. To generate more new wallets, you need to refresh this page.";
+  
+     
+
+}
+
+
+var tempcountinmove=0;
+var printedwalletaddress=0;
+
+function canvasMove(e) {
+	  var x = e.clientX;
+  var y = e.clientY;
+  
+  ///var  startx = e.pageX - canvas.getBoundingClientRect().left;
+   //var  starty = e.pageY - canvas.getBoundingClientRect().top; 
+   var  startx = e.pageX  ;
+   var  starty = e.pageY  ;  
+
+
+
+
+   scaleX = canvas.width / canvas.getBoundingClientRect().width,  
+  scaleY = canvas.height / canvas.getBoundingClientRect().height; 
+  truex= (e.clientX -canvas.getBoundingClientRect().left) * scaleX,  
+  truey = (e.clientY - canvas.getBoundingClientRect().top) * scaleY   
+  
+   if (printedwalletaddress==0)
+   {
+		context.beginPath();
+		context.moveTo(truex, truey);
+		context.lineTo(truex+4, truey+4);
+		context.stroke();
+   }
+
+ 
+// var coor = "Coordinates: (" + x + "," + y + ")" +"Coordinates: (" + truex + "," + truey + ")";
+  //document.getElementById("demo").innerHTML = coor; 
+
+	 
+	
+	
+	
+	
+  // need to use p5.min.js
+  //randomSeed(truex+truey);
+  
+  //entropystring[entropyindex]=random(33,126); // ASCII valid value  // min=33, max=126
+  if (entropyindex<=250 && tempcountinmove!=205)
+  {
+	  entropystring+=String.fromCharCode(getRandomArbitrary(truex+truey, 33, 126));
+	  
+	  tempcountinmove=0;
+	  var descstr="Start moving your mouse below this line until the paper wallets is generated as pdf file.";
+	  descstr=descstr+"                                      Entropy count="+entropyindex+"/250";
+	  document.getElementById('description').innerHTML=descstr;
+	  entropyindex++;
+	  
+  }
+  else
+  {
+	
+	    if (printedwalletaddress==0)
+		{
+			printedwalletaddress=1;
+			
+			printWallet();  
+		}
+  
+  }
+  tempcountinmove++;
+  
+   //var coor = entropystring;
+   // document.getElementById("demo").innerHTML = coor;  
+  
+}
+  
+  
+
+
+
+
+
+
+
+
+
+
+var historyonecycle=0;
+
+	
+
+
+function wait(ms){
+   var start = new Date().getTime();
+   var end = start;
+   while(end < start + ms) {
+     end = new Date().getTime();
+  }
+}
+
+function waitSeconds(iMilliSeconds) {
+    var counter= 0
+        , start = new Date().getTime()
+        , end = 0;
+    while (counter < iMilliSeconds) {
+        end = new Date().getTime();
+        counter = end - start;
+    }
+}
+
+
+function w(){
+
+	setTimeout(5000);
+}
+ 
+
+function initglobalvariable()
+{
+
+ 
+
+}
+ 
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
+ 
+
+</script>
+</html>
